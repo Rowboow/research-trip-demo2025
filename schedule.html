@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程表 - 国際ロータリー第２５９０地区　インターアクト研修旅行</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .day-section {
+            margin-bottom: 2rem;
+        }
+        
+        .day-header {
+            background: linear-gradient(135deg, #2c5aa0, #3d6cb9);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        
+        .day-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        
+        .day-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.2rem;
+        }
+        
+        .schedule-table {
+            margin: 0;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .schedule-table td {
+            vertical-align: top;
+        }
+        
+        .time-cell {
+            font-weight: 600;
+            color: #2c5aa0;
+            width: 100px;
+            text-align: center;
+        }
+        
+        .location-cell {
+            width: 200px;
+        }
+        
+        .location-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .location-link:hover {
+            text-decoration: underline;
+        }
+        
+        .activity-cell {
+            line-height: 1.5;
+        }
+        
+        .meal-info {
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-table {
+                font-size: 0.85rem;
+            }
+            
+            .time-cell {
+                width: 80px;
+            }
+            
+            .location-cell {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>国際ロータリー第２５９０地区<br>インターアクト研修旅行</h1>
+                <div class="subtitle">2025年12月26日〜28日</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="schedule.html" class="active">行程表</a></li>
+                    <li><a href="participants.html">参加者リスト</a></li>
+                    <li><a href="info.html">必要情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 class="text-center mb-3">📅 研修旅行行程表</h1>
+            <p class="text-center mb-4">鹿児島で2泊3日の研修旅行。各場所名をクリックすると、公式ウェブサイトへ移動できます。</p>
+
+            <!-- 1日目 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2>1日目</h2>
+                    <div class="day-date">2025年12月26日（金）</div>
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>場所</th>
+                            <th>活動内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-cell">07:30</td>
+                            <td class="location-cell">
+                                <a href="https://www.haneda-airport.jp/" target="_blank" class="location-link">羽田空港</a>
+                            </td>
+                            <td class="activity-cell">
+                                集合・出席確認
+                                <div class="meal-info">朝食：各自</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">09:10</td>
+                            <td class="location-cell">
+                                <a href="https://www.ana.co.jp/" target="_blank" class="location-link">羽田空港</a>
+                            </td>
+                            <td class="activity-cell">搭乗・出発 ANA621</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">11:05</td>
+                            <td class="location-cell">
+                                <a href="https://www.kagoshima-airport.co.jp/" target="_blank" class="location-link">鹿児島空港</a>
+                            </td>
+                            <td class="activity-cell">到着・バス移動</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">12:45</td>
+                            <td class="location-cell">
+                                <a href="https://www.bukeyashiki.jp/" target="_blank" class="location-link">レストイン武家屋敷</a>
+                            </td>
+                            <td class="activity-cell">
+                                <div class="meal-info">昼食</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">13:30</td>
+                            <td class="location-cell">
+                                <a href="https://www.chiran-tokkou.jp/" target="_blank" class="location-link">知覧特攻平和会館</a>
+                            </td>
+                            <td class="activity-cell">
+                                平和学習<br>
+                                特攻隊の歴史と平和の意味を学ぶ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">16:45</td>
+                            <td class="location-cell">
+                                <a href="https://www.sunroyal.co.jp/" target="_blank" class="location-link">鹿児島サンロイヤルホテル</a>
+                            </td>
+                            <td class="activity-cell">
+                                チェックイン
+                                <div class="meal-info">夕食：ホテル内バンケット</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">17:00</td>
+                            <td class="location-cell">夕食会場</td>
+                            <td class="activity-cell">
+                                ミーティング・発表<br>
+                                1日目の振り返り
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 2日目 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2>2日目</h2>
+                    <div class="day-date">2025年12月27日（土）</div>
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>場所</th>
+                            <th>活動内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-cell">08:00</td>
+                            <td class="location-cell">ホテルフロント</td>
+                            <td class="activity-cell">
+                                集合
+                                <div class="meal-info">朝食：ホテル内</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">08:30</td>
+                            <td class="location-cell">ホテル</td>
+                            <td class="activity-cell">バス移動</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">09:00</td>
+                            <td class="location-cell">
+                                <a href="https://www.kagoshima-yokanavi.jp/" target="_blank" class="location-link">維新のまち</a>
+                            </td>
+                            <td class="activity-cell">
+                                B&Sプログラム<br>
+                                地元大学生と交流・班別行動
+                                <div class="meal-info">昼食：地元レストラン</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">15:00</td>
+                            <td class="location-cell">
+                                <a href="https://ioworld.jp/" target="_blank" class="location-link">かごしま水族館</a>
+                            </td>
+                            <td class="activity-cell">
+                                バックヤードツアー（予定）<br>
+                                水族館の裏側を特別見学
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">16:30</td>
+                            <td class="location-cell">かごしま水族館</td>
+                            <td class="activity-cell">バス移動</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">17:00</td>
+                            <td class="location-cell">
+                                <a href="https://www.sunroyal.co.jp/" target="_blank" class="location-link">鹿児島サンロイヤルホテル</a>
+                            </td>
+                            <td class="activity-cell">
+                                <div class="meal-info">夕食：ホテル内バンケット</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">17:30</td>
+                            <td class="location-cell">夕食会場</td>
+                            <td class="activity-cell">
+                                ミーティング・発表<br>
+                                2日目の振り返り
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 3日目 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <h2>3日目</h2>
+                    <div class="day-date">2025年12月28日（日）</div>
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>時間</th>
+                            <th>場所</th>
+                            <th>活動内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="time-cell">08:30</td>
+                            <td class="location-cell">ホテルフロント</td>
+                            <td class="activity-cell">
+                                集合・チェックアウト
+                                <div class="meal-info">朝食：ホテル内</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">09:00</td>
+                            <td class="location-cell">ホテル</td>
+                            <td class="activity-cell">バス出発</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">09:20</td>
+                            <td class="location-cell">
+                                <a href="https://www.city.kagoshima.lg.jp/sakurajima/" target="_blank" class="location-link">鹿児島港</a>
+                            </td>
+                            <td class="activity-cell">フェリー移動</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">09:35</td>
+                            <td class="location-cell">
+                                <a href="https://www.sakurajima.gr.jp/" target="_blank" class="location-link">桜島ビジターセンター</a>
+                            </td>
+                            <td class="activity-cell">
+                                火山体感バスツアー<br>
+                                活火山の仕組みと歴史を学ぶ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">12:00</td>
+                            <td class="location-cell">
+                                <a href="https://www.sakurajima-bussan.jp/" target="_blank" class="location-link">桜島物産館</a>
+                            </td>
+                            <td class="activity-cell">
+                                お土産購入タイム<br>
+                                桜島大根、火山灰製品など
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">13:30</td>
+                            <td class="location-cell">
+                                <a href="https://www.kurozu.co.jp/" target="_blank" class="location-link">黒酢ガーデン壺畑</a>
+                            </td>
+                            <td class="activity-cell">
+                                伝統の黒酢作り見学
+                                <div class="meal-info">昼食：黒酢料理</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">14:30</td>
+                            <td class="location-cell">黒酢ガーデン壺畑</td>
+                            <td class="activity-cell">バス移動</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">16:55</td>
+                            <td class="location-cell">
+                                <a href="https://www.kagoshima-airport.co.jp/" target="_blank" class="location-link">鹿児島空港</a>
+                            </td>
+                            <td class="activity-cell">搭乗・出発 ANA628</td>
+                        </tr>
+                        <tr>
+                            <td class="time-cell">18:20</td>
+                            <td class="location-cell">
+                                <a href="https://www.haneda-airport.jp/" target="_blank" class="location-link">羽田空港</a>
+                            </td>
+                            <td class="activity-cell">
+                                到着・解散式<br>
+                                お疲れ様でした！
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <p><strong>※</strong> 時間は暂定スケジュールのため、変更の可能性があります。</p>
+                <p><strong>※</strong> 天候や交通状況により、行程が変更される場合があります。</p>
+                <p><strong>※</strong> 各施設の詳細情報は、場所名をクリックしてご確認ください。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 国際ロータリー第２５９０地区　インターアクト研修旅行. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

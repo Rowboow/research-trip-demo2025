@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参加者リスト - 国際ロータリー第２５９０地区　インターアクト研修旅行</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .participant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .participant-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .participant-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #adb5bd;
+        }
+        
+        .participant-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .participant-info {
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .group-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .group-a { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+        .group-b { background: linear-gradient(135deg, #28a745, #20c997); }
+        .group-c { background: linear-gradient(135deg, #6f42c1, #e83e8c); }
+        .group-staff { background: linear-gradient(135deg, #343a40, #495057); }
+        
+        .section-header {
+            background: linear-gradient(135deg, #2c5aa0, #3d6cb9);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .add-participant-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .add-participant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(40, 167, 69, 0.4);
+        }
+        
+        .edit-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .edit-btn:hover {
+            background: #5a6268;
+        }
+        
+        @media (max-width: 768px) {
+            .participant-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .participant-card {
+                padding: 1rem;
+            }
+            
+            .photo-placeholder {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .add-participant-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>国際ロータリー第２５９０地区<br>インターアクト研修旅行</h1>
+                <div class="subtitle">2025年12月26日〜28日</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="schedule.html">行程表</a></li>
+                    <li><a href="participants.html" class="active">参加者リスト</a></li>
+                    <li><a href="info.html">必要情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 class="text-center mb-3">👥 参加者リスト</h1>
+            <p class="text-center mb-4">研修旅行に参加する学生と同行者の情報です。編集ボタンをクリックして情報を更新できます。</p>
+
+            <!-- 参加学生セクション -->
+            <div class="section-header">
+                <h2>参加学生（24名）</h2>
+            </div>
+            
+            <div class="participant-grid" id="student-grid">
+                <!-- A班 -->
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">田中 花子</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年A組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student1')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">佐藤 太郎</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年A組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student2')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">鈴木 美咲</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年B組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student3')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">高橋 健太</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年B組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student4')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">伊藤 愛美</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年C組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student5')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">渡辺 翔平</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年C組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student6')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">山田 雅子</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年D組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student7')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">中村 拓海</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年D組
+                    </div>
+                    <span class="group-badge group-a">A班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student8')">編集</button>
+                </div>
+
+                <!-- B班 -->
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">小林 麻衣</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年E組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student9')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">加藤 大輝</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年E組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student10')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">吉田 さくら</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年F組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student11')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">松本 涼介</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年F組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student12')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">井上 結愛</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年G組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student13')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">木村 駿</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年G組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student14')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">林 千尋</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年H組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student15')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">斉藤 雄太</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年H組
+                    </div>
+                    <span class="group-badge group-b">B班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student16')">編集</button>
+                </div>
+
+                <!-- C班 -->
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">森田 絵美</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年I組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student17')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">清水 一真</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年I組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student18')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">三浦 香織</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年J組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student19')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">橋本 光</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年J組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student20')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">石川 あかり</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年K組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student21')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">坂本 啓介</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年K組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student22')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">長谷川 理子</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年L組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student23')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👤</div>
+                    <div class="participant-name">村上 和也</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        2年L組
+                    </div>
+                    <span class="group-badge group-c">C班</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('student24')">編集</button>
+                </div>
+            </div>
+
+            <!-- 同行者セクション -->
+            <div class="section-header">
+                <h2>同行者・スタッフ（6名）</h2>
+            </div>
+            
+            <div class="participant-grid" id="staff-grid">
+                <div class="participant-card">
+                    <div class="photo-placeholder">👨‍🏫</div>
+                    <div class="participant-name">田村 先生</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        学年主任・引率責任者<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">引率教員</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff1')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👩‍🏫</div>
+                    <div class="participant-name">山本 先生</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        副担任・保健担当<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">引率教員</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff2')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👨‍🏫</div>
+                    <div class="participant-name">佐々木 先生</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        体育科・安全管理担当<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">引率教員</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff3')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">👩‍⚕️</div>
+                    <div class="participant-name">看護師 太田さん</div>
+                    <div class="participant-info">
+                        桜丘高等学校<br>
+                        学校看護師・健康管理担当<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">看護師</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff4')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">🚌</div>
+                    <div class="participant-name">運転手 鈴木さん</div>
+                    <div class="participant-info">
+                        ABC観光バス<br>
+                        大型バス運転手<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">バス運転手</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff5')">編集</button>
+                </div>
+
+                <div class="participant-card">
+                    <div class="photo-placeholder">📷</div>
+                    <div class="participant-name">カメラマン 西田さん</div>
+                    <div class="participant-info">
+                        フォトスタジオ西田<br>
+                        記録撮影担当<br>
+                        連絡先: 090-xxxx-xxxx
+                    </div>
+                    <span class="group-badge group-staff">カメラマン</span>
+                    <br>
+                    <button class="edit-btn" onclick="editParticipant('staff6')">編集</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 参加者追加ボタン -->
+    <button class="add-participant-btn" onclick="addNewParticipant()" title="新しい参加者を追加">
+        +
+    </button>
+
+    <footer>
+        <p>&copy; 2025 国際ロータリー第２５９０地区　インターアクト研修旅行. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

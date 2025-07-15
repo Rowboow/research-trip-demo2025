@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>必要情報 - 国際ロータリー第２５９０地区　インターアクト研修旅行</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .info-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #2c5aa0, #3d6cb9);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px 10px 0 0;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .section-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.8rem 0.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            min-height: 44px;
+        }
+        
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 0.8rem;
+            margin-top: 0.1rem;
+            transform: scale(1.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checklist label {
+            cursor: pointer;
+            line-height: 1.4;
+            font-size: 1rem;
+            display: block;
+            width: 100%;
+            flex: 1;
+            text-align: left;
+        }
+        
+        .checklist li:hover {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin: 0 -0.5rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        
+        .category-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0 1rem 0;
+            font-weight: 600;
+            color: #2c5aa0;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .important-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #f7931e;
+        }
+        
+        .important-note h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+        
+        .important-note p {
+            color: #856404;
+            margin: 0;
+        }
+        
+        .contact-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .contact-card h4 {
+            color: #2c5aa0;
+            margin-bottom: 0.8rem;
+        }
+        
+        .contact-info {
+            line-height: 1.6;
+        }
+        
+        .emergency-contact {
+            background: #ffe6e6;
+            border-left-color: #dc3545;
+        }
+        
+        .emergency-contact h4 {
+            color: #dc3545;
+        }
+        
+        .anchor-nav {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+        }
+        
+        .anchor-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        
+        .anchor-nav a {
+            color: #2c5aa0;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .anchor-nav a:hover {
+            background: #2c5aa0;
+            color: white;
+        }
+        
+        /* PC表示でのチェックリスト最適化 */
+        @media (min-width: 769px) {
+            .checklist li {
+                padding: 0.6rem 1rem;
+                align-items: center;
+            }
+            
+            .checklist input[type="checkbox"] {
+                margin-right: 1.2rem;
+                margin-top: 0;
+                position: relative;
+                top: 1px;
+            }
+            
+            .checklist label {
+                line-height: 1.3;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .anchor-nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .anchor-nav a {
+                text-align: center;
+            }
+            
+            .section-content {
+                padding: 1.5rem;
+            }
+            
+            .contact-card {
+                padding: 1rem;
+            }
+            
+            .checklist li {
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .checklist input[type="checkbox"] {
+                margin-right: 0.8rem;
+                transform: scale(1.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>国際ロータリー第２５９０地区<br>インターアクト研修旅行</h1>
+                <div class="subtitle">2025年12月26日〜28日</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="schedule.html">行程表</a></li>
+                    <li><a href="participants.html">参加者リスト</a></li>
+                    <li><a href="info.html" class="active">必要情報</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 class="text-center mb-3">📋 必要情報</h1>
+            <p class="text-center mb-4">研修旅行に関する重要な情報をまとめています。出発前に必ずご確認ください。</p>
+
+            <!-- アンカーナビゲーション -->
+            <nav class="anchor-nav">
+                <ul>
+                    <li><a href="#packing">🎒 持ち物</a></li>
+                    <li><a href="#notes">⚠️ 注意事項</a></li>
+                    <li><a href="#contacts">📞 緊急連絡先</a></li>
+                    <li><a href="#assignments">📝 課題</a></li>
+                </ul>
+            </nav>
+
+            <!-- 持ち物リスト -->
+            <section id="packing" class="info-section">
+                <h2 class="section-title">🎒 持ち物リスト</h2>
+                <div class="section-content">
+                    <div class="important-note">
+                        <h4>⚠️ 持参必須アイテム</h4>
+                        <p>以下のアイテムは必ず持参してください。忘れた場合、参加に支障が出る可能性があります。</p>
+                    </div>
+
+                    <div class="category-header">必需品・重要書類</div>
+                    <ul class="checklist">
+                        <li><input type="checkbox" id="item1"><label for="item1">学生証または身分証明書</label></li>
+                        <li><input type="checkbox" id="item2"><label for="item2">健康保険証のコピー</label></li>
+                        <li><input type="checkbox" id="item3"><label for="item3">参加同意書（保護者署名入り）</label></li>
+                        <li><input type="checkbox" id="item4"><label for="item4">緊急連絡先カード</label></li>
+                        <li><input type="checkbox" id="item5"><label for="item5">お薬手帳（薬を服用している場合）</label></li>
+                        <li><input type="checkbox" id="item6"><label for="item6">小銭・交通系ICカード</label></li>
+                    </ul>
+
+                    <div class="category-header">衣類・身の回り品</div>
+                    <ul class="checklist">
+                        <li><input type="checkbox" id="item7"><label for="item7">着替え（3日分）</label></li>
+                        <li><input type="checkbox" id="item8"><label for="item8">下着・靴下（3日分＋予備1日分）</label></li>
+                        <li><input type="checkbox" id="item9"><label for="item9">パジャマ・部屋着</label></li>
+                        <li><input type="checkbox" id="item10"><label for="item10">防寒着（コート・ジャンパー）</label></li>
+                        <li><input type="checkbox" id="item11"><label for="item11">雨具（折りたたみ傘・レインコート）</label></li>
+                        <li><input type="checkbox" id="item12"><label for="item12">歩きやすい靴（スニーカー推奨）</label></li>
+                        <li><input type="checkbox" id="item13"><label for="item13">室内履き（スリッパ）</label></li>
+                    </ul>
+
+                    <div class="category-header">日用品・衛生用品</div>
+                    <ul class="checklist">
+                        <li><input type="checkbox" id="item14"><label for="item14">歯ブラシ・歯磨き粉</label></li>
+                        <li><input type="checkbox" id="item15"><label for="item15">シャンプー・リンス（小分けボトル）</label></li>
+                        <li><input type="checkbox" id="item16"><label for="item16">ボディソープ・石鹸</label></li>
+                        <li><input type="checkbox" id="item17"><label for="item17">タオル（バスタオル・フェイスタオル）</label></li>
+                        <li><input type="checkbox" id="item18"><label for="item18">ティッシュ・ウェットティッシュ</label></li>
+                        <li><input type="checkbox" id="item19"><label for="item19">マスク（予備も含めて多めに）</label></li>
+                        <li><input type="checkbox" id="item20"><label for="item20">手指消毒用アルコール（携帯用）</label></li>
+                    </ul>
+
+                    <div class="category-header">学習・記録用品</div>
+                    <ul class="checklist">
+                        <li><input type="checkbox" id="item21"><label for="item21">筆記用具（ペン・鉛筆・消しゴム）</label></li>
+                        <li><input type="checkbox" id="item22"><label for="item22">ノート・メモ帳</label></li>
+                        <li><input type="checkbox" id="item23"><label for="item23">カメラ（スマートフォン可）</label></li>
+                        <li><input type="checkbox" id="item24"><label for="item24">充電器・モバイルバッテリー</label></li>
+                        <li><input type="checkbox" id="item25"><label for="item25">クリアファイル（資料整理用）</label></li>
+                    </ul>
+
+                    <div class="category-header">その他・あると便利</div>
+                    <ul class="checklist">
+                        <li><input type="checkbox" id="item26"><label for="item26">エコバッグ（お土産用）</label></li>
+                        <li><input type="checkbox" id="item27"><label for="item27">ビニール袋（汚れ物用）</label></li>
+                        <li><input type="checkbox" id="item28"><label for="item28">絆創膏・常備薬</label></li>
+                        <li><input type="checkbox" id="item29"><label for="item29">目覚まし時計</label></li>
+                        <li><input type="checkbox" id="item30"><label for="item30">お小遣い（上限5,000円）</label></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 注意事項 -->
+            <section id="notes" class="info-section">
+                <h2 class="section-title">⚠️ 注意事項</h2>
+                <div class="section-content">
+                    <div class="important-note">
+                        <h4>🚫 絶対に持参禁止</h4>
+                        <p>以下のアイテムは絶対に持参しないでください。発見された場合、即座に預かり・処分の対象となります。</p>
+                    </div>
+
+                    <div class="category-header">持参禁止物品</div>
+                    <ul style="color: #dc3545; font-weight: 500;">
+                        <li>• アルコール類（エタノール系除菌用品は除く）</li>
+                        <li>• タバコ・電子タバコ・ライター</li>
+                        <li>• 刃物類（カッター・ハサミ等の文具は除く）</li>
+                        <li>• ゲーム機・トランプ等の娯楽用品</li>
+                        <li>• 過度に高価な装身具・電子機器</li>
+                        <li>• 大音量の出る機器（イヤホン使用は可）</li>
+                    </ul>
+
+                    <div class="category-header">行動・マナーについて</div>
+                    <div class="important-note">
+                        <h4>集合時間の厳守</h4>
+                        <p>全ての集合時間は必ず守ってください。遅刻は他の参加者に迷惑をかけます。</p>
+                    </div>
+                    <ul>
+                        <li>• 集合時間の5分前には集合場所に到着すること</li>
+                        <li>• 班行動を基本とし、単独行動は禁止</li>
+                        <li>• 施設内での写真撮影は許可された場所のみ</li>
+                        <li>• 他の利用者への配慮を忘れずに</li>
+                        <li>• 体調不良の際は速やかに引率者に報告</li>
+                    </ul>
+
+                    <div class="category-header">宿泊施設でのルール</div>
+                    <ul>
+                        <li>• 消灯時間（22:00）以降は静かに過ごすこと</li>
+                        <li>• 他の部屋への出入りは原則禁止</li>
+                        <li>• 貴重品は各自で責任を持って管理</li>
+                        <li>• 備品の破損・紛失は速やかに報告</li>
+                        <li>• 入浴時間を守り、他の利用者に配慮</li>
+                    </ul>
+
+                    <div class="category-header">健康・安全管理</div>
+                    <ul>
+                        <li>• 持病・アレルギーがある場合は事前に詳細を報告</li>
+                        <li>• 体調不良を感じたら我慢せずに申し出る</li>
+                        <li>• 怪我をした場合は小さなものでも報告</li>
+                        <li>• 知らない人についていかない</li>
+                        <li>• 緊急時は引率者の指示に従う</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 緊急連絡先 -->
+            <section id="contacts" class="info-section">
+                <h2 class="section-title">📞 緊急連絡先</h2>
+                <div class="section-content">
+                    <div class="important-note">
+                        <h4>📱 緊急時の連絡方法</h4>
+                        <p>体調不良・怪我・トラブル等が発生した場合は、まず引率教員に連絡してください。</p>
+                    </div>
+
+                    <div class="contact-card emergency-contact">
+                        <h4>🚨 最優先連絡先（24時間対応）</h4>
+                        <div class="contact-info">
+                            <strong>田村先生（引率責任者）</strong><br>
+                            携帯電話: 090-1234-5678<br>
+                            メール: tamura@sakuraoka-h.ac.jp
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>🏫 学校関係者</h4>
+                        <div class="contact-info">
+                            <strong>山本先生（副担任）</strong><br>
+                            携帯電話: 080-2345-6789<br>
+                            <br>
+                            <strong>佐々木先生（体育科）</strong><br>
+                            携帯電話: 070-3456-7890<br>
+                            <br>
+                            <strong>桜丘高等学校（代表）</strong><br>
+                            電話: 03-1234-5678<br>
+                            住所: 東京都○○区○○町1-2-3
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>🏥 医療機関</h4>
+                        <div class="contact-info">
+                            <strong>○○総合病院</strong><br>
+                            電話: 0123-45-6789<br>
+                            住所: ○○県○○市○○町2-3-4<br>
+                            ※24時間救急対応<br>
+                            <br>
+                            <strong>○○クリニック</strong><br>
+                            電話: 0123-56-7890<br>
+                            診療時間: 9:00-17:00<br>
+                            休診日: 日曜・祝日
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h4>🚌 交通・宿泊関連</h4>
+                        <div class="contact-info">
+                            <strong>ABC観光バス</strong><br>
+                            電話: 0123-67-8901<br>
+                            運転手: 鈴木さん（090-4567-8901）<br>
+                            <br>
+                            <strong>○○研修センター</strong><br>
+                            電話: 0123-78-9012<br>
+                            住所: ○○県○○市○○町3-4-5
+                        </div>
+                    </div>
+
+                    <div class="contact-card emergency-contact">
+                        <h4>🚔 その他緊急機関</h4>
+                        <div class="contact-info">
+                            <strong>警察</strong>: 110<br>
+                            <strong>消防・救急</strong>: 119<br>
+                            <strong>海上保安庁</strong>: 118
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 課題 -->
+            <section id="assignments" class="info-section">
+                <h2 class="section-title">📝 課題</h2>
+                <div class="section-content">
+                    <div class="important-note">
+                        <h4>📋 研修レポートについて</h4>
+                        <p>研修旅行終了後、学習成果をまとめたレポートを提出していただきます。</p>
+                    </div>
+
+                    <div class="category-header">事前課題</div>
+                    <ul>
+                        <li>• 訪問予定地の歴史・文化について調べる（A4用紙1枚程度）</li>
+                        <li>• 研修旅行で学びたいことを3つ以上リストアップ</li>
+                        <li>• 班のメンバーと事前打ち合わせを実施</li>
+                    </ul>
+
+                    <div class="category-header">研修中の記録</div>
+                    <ul>
+                        <li>• 毎日の振り返りシートに記入</li>
+                        <li>• 見学先での気づきやメモを取る</li>
+                        <li>• 班員との討論内容を記録</li>
+                        <li>• 印象に残った場面の写真撮影（許可された場所のみ）</li>
+                    </ul>
+
+                    <div class="category-header">事後課題（提出期限：2026年1月15日）</div>
+                    <ul>
+                        <li>• 研修旅行レポート（A4用紙3枚以上、手書き可）</li>
+                        <li>• 班別発表資料の作成</li>
+                        <li>• 学んだことの感想文（800字以上）</li>
+                        <li>• 今後の学習計画への反映</li>
+                    </ul>
+
+                    <div class="category-header">レポート作成のポイント</div>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <ul>
+                            <li>• 単なる感想ではなく、学習した内容を具体的に記述</li>
+                            <li>• 事前に調べた内容と実際に見聞きした内容の比較</li>
+                            <li>• 班員との議論から得られた新たな視点</li>
+                            <li>• 今後の学習や進路選択への影響</li>
+                            <li>• 写真や資料を効果的に活用</li>
+                        </ul>
+                    </div>
+
+                    <div class="important-note">
+                        <h4>📅 発表会について</h4>
+                        <p>2026年1月下旬に班別発表会を実施予定です。各班10分程度のプレゼンテーションを行います。</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 国際ロータリー第２５９０地区　インターアクト研修旅行. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

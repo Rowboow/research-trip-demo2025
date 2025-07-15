@@ -1,0 +1,602 @@
+/* 手作り感デザイン - 共通スタイル */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Hiragino Maru Gothic ProN", "Comic Sans MS", sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #3E2723;
+    background-color: #FBF8F3;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 138, 101, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(102, 187, 106, 0.1) 0%, transparent 50%);
+    background-size: 300px 300px, 200px 200px;
+}
+
+/* ヘッダー */
+header {
+    background: #FBF8F3;
+    color: #3E2723;
+    padding: 1.5rem 0;
+    border-bottom: 3px solid #FF8A65;
+    position: relative;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #3E2723;
+    letter-spacing: -0.5px;
+    transform: rotate(-2deg);
+    font-family: "Comic Sans MS", "Klee One", "Hiragino Maru Gothic ProN", cursive;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #66BB6A;
+    margin-top: 0.2rem;
+    font-weight: 500;
+    transform: rotate(1deg);
+}
+
+/* ナビゲーション */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: #3E2723;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 1rem;
+    background: #F5F5DC;
+    border: 2px solid #3E2723;
+    border-radius: 20px;
+    transform: rotate(-1deg);
+    box-shadow: 2px 2px 0px #3E2723;
+}
+
+nav a:hover {
+    color: #FBF8F3;
+    background: #FF8A65;
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 3px 3px 0px #3E2723;
+}
+
+nav a.active {
+    color: #FBF8F3;
+    background: #66BB6A;
+    transform: rotate(1deg);
+    box-shadow: 3px 3px 0px #3E2723;
+}
+
+/* メインコンテンツ */
+main {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.container {
+    background: #FBF8F3;
+    border: 3px solid #3E2723;
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    transform: rotate(0.5deg);
+    box-shadow: 5px 5px 0px #FF8A65;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 25px;
+    height: 25px;
+    background: #66BB6A;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    border: 2px solid #3E2723;
+}
+
+/* ヒーローセクション */
+.hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #FBF8F3;
+    margin-bottom: 3rem;
+    position: relative;
+    border: 3px dashed #FF8A65;
+    border-radius: 20px;
+    transform: rotate(-0.5deg);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #3E2723;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    font-family: "Comic Sans MS", "Klee One", cursive;
+    transform: rotate(1deg);
+}
+
+.hero .date {
+    font-size: 1.5rem;
+    color: #FBF8F3;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    background: #FF8A65;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: 3px solid #3E2723;
+    box-shadow: 4px 4px 0px #3E2723;
+    transform: rotate(-2deg);
+    display: inline-block;
+    font-family: "Comic Sans MS", cursive;
+}
+
+.hero .duration {
+    font-size: 1.2rem;
+    color: #66BB6A;
+    font-weight: 600;
+    transform: rotate(1deg);
+    font-family: "Comic Sans MS", cursive;
+}
+
+/* グリッドレイアウト */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* 手作り風レイアウト */
+.grid .card:first-child {
+    margin-top: 10px;
+}
+
+.grid .card:nth-child(2) {
+    margin-top: -5px;
+}
+
+.grid .card:nth-child(3) {
+    margin-top: 15px;
+}
+
+/* カード */
+.card {
+    background: #FBF8F3;
+    border: 3px solid #3E2723;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: 4px 4px 0px #FF8A65;
+}
+
+.card:nth-child(1) { transform: rotate(-2deg); }
+.card:nth-child(2) { transform: rotate(1deg); }
+.card:nth-child(3) { transform: rotate(-1deg); }
+
+.card:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 6px 6px 0px #FF8A65;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: #66BB6A;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    border: 2px solid #3E2723;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #FF8A65;
+    text-shadow: 2px 2px 0px #3E2723;
+}
+
+.card h3 {
+    color: #3E2723;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: "Comic Sans MS", cursive;
+    transform: rotate(-1deg);
+}
+
+.card p {
+    color: #3E2723;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* ボタン */
+.btn {
+    display: inline-block;
+    background: #FF8A65;
+    color: #3E2723;
+    padding: 15px 30px;
+    text-decoration: none;
+    border: 3px solid #3E2723;
+    border-radius: 25px;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    transform: rotate(-1deg);
+    box-shadow: 4px 4px 0px #3E2723;
+}
+
+.btn:hover {
+    background: #66BB6A;
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 2px 2px 0px #3E2723;
+}
+
+.btn-secondary {
+    background: #66BB6A;
+    color: #3E2723;
+    transform: rotate(1deg);
+}
+
+.btn-secondary:hover {
+    background: #FF8A65;
+    transform: rotate(0deg) scale(1.05);
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 2rem;
+    background: #FBF8F3;
+    border: 3px solid #3E2723;
+    border-radius: 15px;
+    overflow: hidden;
+    transform: rotate(-0.5deg);
+}
+
+th, td {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    border-bottom: 2px dashed #FF8A65;
+}
+
+th {
+    background: #66BB6A;
+    color: #3E2723;
+    font-weight: 600;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 1rem;
+    transform: rotate(0.5deg);
+}
+
+tr:hover {
+    background-color: #F5F5DC;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 138, 101, 0.1);
+}
+
+/* フォーム */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #3E2723;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 1rem;
+    transform: rotate(-1deg);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 1rem;
+    border: 3px solid #3E2723;
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #FBF8F3;
+    font-family: "Hiragino Maru Gothic ProN", sans-serif;
+    transform: rotate(0.5deg);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #FF8A65;
+    box-shadow: 3px 3px 0px #FF8A65;
+    transform: rotate(0deg);
+}
+
+/* フッター */
+footer {
+    background: #F5F5DC;
+    color: #3E2723;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 3px dashed #FF8A65;
+    font-size: 0.9rem;
+    font-family: "Comic Sans MS", cursive;
+    transform: rotate(-0.2deg);
+}
+
+/* 見出しのスタイル */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Comic Sans MS", "Klee One", "Hiragino Maru Gothic ProN", cursive;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    color: #3E2723;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    transform: rotate(-1deg);
+}
+
+h2 {
+    font-size: 1.8rem;
+    background: #FF8A65;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    border: 3px solid #3E2723;
+    margin-bottom: 2rem;
+    transform: rotate(-0.5deg);
+    display: inline-block;
+    box-shadow: 3px 3px 0px #3E2723;
+}
+
+h3 {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: #66BB6A;
+    transform: rotate(1deg);
+}
+
+/* 手作り風装飾要素 */
+.hand-drawn-line {
+    height: 3px;
+    background: repeating-linear-gradient(
+        to right,
+        #66BB6A 0px,
+        #66BB6A 10px,
+        transparent 10px,
+        transparent 15px
+    );
+    transform: rotate(-0.5deg);
+    margin: 2rem 0;
+}
+
+.hand-arrow::after {
+    content: "→";
+    font-size: 20px;
+    color: #FF8A65;
+    transform: rotate(5deg);
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.sketchy-border {
+    border: 3px dashed #FF8A65;
+    border-radius: 15px;
+    padding: 1.5rem;
+    background: #FBF8F3;
+    transform: rotate(-0.5deg);
+    margin: 2rem 0;
+}
+
+.text-accent {
+    color: #FF8A65;
+    font-weight: 600;
+    font-family: "Comic Sans MS", cursive;
+}
+
+.cute-star {
+    color: #66BB6A;
+    font-size: 1.5rem;
+    display: inline-block;
+    transform: rotate(15deg);
+    margin: 0 0.5rem;
+}
+
+.masking-tape {
+    background: #F5F5DC;
+    border: 2px solid #3E2723;
+    padding: 0.5rem 1rem;
+    transform: rotate(-2deg);
+    display: inline-block;
+    box-shadow: 2px 2px 0px #3E2723;
+    font-family: "Comic Sans MS", cursive;
+    font-weight: 600;
+    color: #3E2723;
+}
+
+.rotate-1 { transform: rotate(-2deg); }
+.rotate-2 { transform: rotate(1deg); }
+.rotate-3 { transform: rotate(-1deg); }
+.rotate-4 { transform: rotate(3deg); }
+
+.offset-1 { margin-left: 5px; margin-top: -3px; }
+.offset-2 { margin-left: -3px; margin-top: 2px; }
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        transform: rotate(0deg);
+        font-size: 0.9rem;
+    }
+    
+    .hero {
+        padding: 2rem 1rem;
+        transform: rotate(0deg);
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+        transform: rotate(0deg);
+    }
+    
+    .hero .date {
+        font-size: 1.2rem;
+        transform: rotate(0deg);
+    }
+    
+    .hero .duration {
+        transform: rotate(0deg);
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card:nth-child(1),
+    .card:nth-child(2),
+    .card:nth-child(3) {
+        transform: rotate(0deg);
+        margin-top: 0;
+    }
+    
+    main {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .container {
+        padding: 2rem;
+        transform: rotate(0deg);
+    }
+    
+    table {
+        font-size: 0.9rem;
+        transform: rotate(0deg);
+    }
+    
+    th, td {
+        padding: 1rem 0.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        transform: rotate(0deg);
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        transform: rotate(0deg);
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        transform: rotate(0deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        transform: rotate(0deg);
+    }
+    
+    .container::before {
+        display: none;
+    }
+    
+    .card::before {
+        display: none;
+    }
+}
+
+/* ユーティリティクラス */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.hidden {
+    display: none;
+}
