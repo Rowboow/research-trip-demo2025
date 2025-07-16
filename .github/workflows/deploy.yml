@@ -1,6 +1,13 @@
   1. .github/workflows/deploy.yml
 
-  name: Deploy Research Trip Site to ConoHa VPS
+name: Deploy Research Trip Site to ConoHa VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 手動実行も可能
+
+env:  name: Deploy Research Trip Site to ConoHa VPS
 
   on:
     push:
