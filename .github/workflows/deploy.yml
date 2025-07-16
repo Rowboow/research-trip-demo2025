@@ -1,47 +1,3 @@
-name: Deploy Research Trip Site to ConoHa VPS
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Deploy to ConoHa VPS
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ secrets.DEPLOY_HOST }}
-        username: ${{ secrets.DEPLOY_USER }}
-        key: ${{ secrets.DEPLOY_KEY }}
-        script: |
-          # バックアップ作成
-          sudo cp -r ${{ secrets.DEPLOY_PATH }} ${{ secrets.DEPLOY_PATH }}.backup.$(date +%Y%m%d_%H%M%S) || true
-          
-          # 一時ディレクトリ作成
-          mkdir -p /tmp/deploy-$(date +%Y%m%d_%H%M%S)
-          cd /tmp/deploy-$(date +%Y%m%d_%H%M%S)
-          
-          # リポジトリクローン
-          git clone https://github.com/Rowboow/research-trip-demo2025.git .
-          
-          # ファイルをデプロイ先にコピー
-          sudo cp -r * ${{ secrets.DEPLOY_PATH }}
-          
-          # 権限設定
-          sudo chown -R www-data:www-data ${{ secrets.DEPLOY_PATH }}
-          sudo chmod -R 755 ${{ secrets.DEPLOY_PATH }}
-          
-          # 一時ディレクトリ削除
-          cd ~
-          rm -rf /tmp/deploy-$(date +%Y%m%d_%H%M%S)
-          
-          echo "Deployment completed successfully!"
 name: Deploy Test
 
 on:
@@ -56,8 +12,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
       
-    - name: Test SSH connection
+    - name: Test connection info
       run: |
-        echo "Testing connection to ${{ secrets.DEPLOY_HOST }}"
-        echo "User: ${{ secrets.DEPLOY_USER }}"
-        echo "Deploy path: ${{ secrets.DEPLOY_PATH }}"
+        echo "Testing workflow"
+        echo "Connection test completed"

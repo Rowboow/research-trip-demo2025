@@ -418,3 +418,5 @@ sudo grep "ssh" /var/log/syslog
 ---
 
 この設計書を元に、Claude Codeでの開発をスムーズに進めることができます。各フェーズに分けて段階的に実装していくことをお勧めします。# research-trip-demo2025
+
+GitHub Actions自動デプロイテスト - Wed Jul 16 02:17:54 PM JST 2025
