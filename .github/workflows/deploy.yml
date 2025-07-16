@@ -42,3 +42,22 @@ jobs:
           rm -rf /tmp/deploy-$(date +%Y%m%d_%H%M%S)
           
           echo "Deployment completed successfully!"
+name: Deploy Test
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Test SSH connection
+      run: |
+        echo "Testing connection to ${{ secrets.DEPLOY_HOST }}"
+        echo "User: ${{ secrets.DEPLOY_USER }}"
+        echo "Deploy path: ${{ secrets.DEPLOY_PATH }}"
