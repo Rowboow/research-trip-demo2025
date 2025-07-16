@@ -1,310 +1,44 @@
-  1. .github/workflows/deploy.yml
-
 name: Deploy Research Trip Site to ConoHa VPS
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # 手動実行も可能
+  workflow_dispatch:
 
-env:  name: Deploy Research Trip Site to ConoHa VPS
-
-  on:
-    push:
-      branches: [ main ]
-    workflow_dispatch:  # 手動実行も可能
-
-  env:
-    NODE_ENV: production
-
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
-
-      steps:
-      - name: 📂 リポジトリをチェックアウト
-        uses: actions/checkout@v4
-
-      - name: 🔧 SSH設定
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
-
-      - name: 🔍 SSH接続テスト
-        run: |
-          echo "SSH接続をテストしています..."
-          ssh -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ 
-  secrets.DEPLOY_HOST }} "echo '✅ SSH connection successful'"
-
-      - name: 📋 デプロイファイル確認
-        run: |
-          echo "必要なファイルの存在を確認しています..."
-          required_files=("index.html" "schedule.html" "participants.html"
-   "info.html" "styles.css" "script.js")
-          missing_files=()
-
-          for file in "${required_files[@]}"; do
-            if [ ! -f "$file" ]; then
-              missing_files+=("$file")
-            fi
-          done
-
-          if [ ${#missing_files[@]} -ne 0 ]; then
-            echo "❌ 以下のファイルが見つかりません:"
-            printf '%s\n' "${missing_files[@]}"
-            exit 1
-          fi
-
-          echo "✅ すべての必要なファイルが確認できました"
-
-      - name: 💾 既存ファイルのバックアップ作成
-        run: |
-          echo "既存ファイルのバックアップを作成しています..."
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
-            if [ -d '${{ secrets.DEPLOY_PATH }}' ]; then
-              backup_name='${{ secrets.DEPLOY_PATH }}_backup_$(date 
-  +%Y%m%d_%H%M%S)'
-              sudo cp -r '${{ secrets.DEPLOY_PATH }}' \"\$backup_name\"
-              echo \"✅ バックアップを作成しました: \$backup_name\"
-            else
-              echo \"📁 
-  デプロイディレクトリが存在しません。作成します...\"
-              sudo mkdir -p '${{ secrets.DEPLOY_PATH }}'
-            fi
-          "
-
-      - name: 🚀 ファイルをデプロイ
-        run: |
-          echo "研修旅行サイトをConoHa VPSにデプロイしています..."
-          rsync -avz --delete \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='.DS_Store' \
-            --exclude='*.md' \
-            --exclude='.gitignore' \
-            --exclude='*.log' \
-            --exclude='tmp/' \
-            --exclude='cache/' \
-            --exclude='scripts/' \
-            --exclude='CLAUDE.md' \
-            --exclude='magazine_design_instructions.md' \
-            --exclude='trip_schedule_data.md' \
-            --progress \
-            ./ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ 
-  secrets.DEPLOY_PATH }}/
-            
-          echo "✅ ファイルのデプロイが完了しました"
-            
-      - name: 🔒 ファイル権限設定
-        run: |
-          echo "ファイル権限を設定しています..."
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
-            # 所有者をwww-dataに設定
-            sudo chown -R www-data:www-data '${{ secrets.DEPLOY_PATH }}'
-            
-            # ディレクトリ権限を755に設定
-            sudo find '${{ secrets.DEPLOY_PATH }}' -type d -exec chmod 755
-   {} \;
-            
-            # ファイル権限を644に設定
-            sudo find '${{ secrets.DEPLOY_PATH }}' -type f -exec chmod 644
-   {} \;
-            
-            echo '✅ ファイル権限の設定が完了しました'
-          "
-
-      - name: ✅ デプロイ検証
-        run: |
-          echo "デプロイの検証を実行しています..."
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
-            echo '📂 デプロイされたファイル一覧:'
-            ls -la '${{ secrets.DEPLOY_PATH }}'
-            echo ''
-            
-            echo '🔍 主要ファイルの存在確認:'
-            core_files=('index.html' 'schedule.html' 'participants.html' 
-  'info.html' 'styles.css' 'script.js')
-            all_good=true
-            
-            for file in \"\${core_files[@]}\"; do
-              if [ -f '${{ secrets.DEPLOY_PATH }}/\$file' ]; then
-                echo \"✅ \$file が存在します\"
-              else
-                echo \"❌ \$file が見つかりません\"
-                all_good=false
-              fi
-            done
-            
-            if [ \"\$all_good\" = true ]; then
-              echo '✅ すべての主要ファイルが正常にデプロイされました'
-            else
-              echo '❌ 一部のファイルが見つかりません'
-              exit 1
-            fi
-            
-            echo ''
-            echo '📊 デプロイ情報:'
-            echo \"📍 デプロイパス: ${{ secrets.DEPLOY_PATH }}\"
-            echo \"👤 所有者: \$(stat -c '%U:%G' '${{ secrets.DEPLOY_PATH 
-  }}')\""
-            echo \"🔒 権限: \$(stat -c '%a' '${{ secrets.DEPLOY_PATH 
-  }}')\""
-            echo \"📅 更新日時: \$(stat -c '%y' '${{ secrets.DEPLOY_PATH 
-  }}')\""
-          "
-
-      - name: 🌐 Webサイトアクセステスト
-        run: |
-          echo "Webサイトのアクセシビリティをテストしています..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" "http://${{ 
-  secrets.DEPLOY_HOST }}/interact/" || echo "000")
-
-          if [ "$response" = "200" ]; then
-            echo "✅ Webサイトにアクセスできました (HTTP $response)"
-            echo "🔗 サイトURL: http://${{ secrets.DEPLOY_HOST 
-  }}/interact/"
-          elif [ "$response" = "000" ]; then
-            echo "⚠️ 
-  Webサイトに接続できませんでした（ネットワーク/DNS問題の可能性）"
-          else
-            echo "⚠️ Webサイトが HTTP $response を返しました"
-            echo "ℹ️ ドメイン/SSL設定により正常な場合があります"
-          fi
-
-      - name: 🧹 古いバックアップのクリーンアップ
-        run: |
-          echo "古いバックアップファイルを削除しています..."
-          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "
-            cd \$(dirname '${{ secrets.DEPLOY_PATH }}')
-            
-            # 既存のバックアップ数を確認
-            backup_count=\$(ls -1 | grep '\$(basename '${{ 
-  secrets.DEPLOY_PATH }}')_backup_' | wc -l)
-            echo \"📊 \$backup_count 個のバックアップが見つかりました\"
-            
-            # 最新3つのバックアップのみ保持
-            if [ \$backup_count -gt 3 ]; then
-              old_backups=\$(ls -t | grep '\$(basename '${{ 
-  secrets.DEPLOY_PATH }}')_backup_' | tail -n +4)
-              if [ -n \"\$old_backups\" ]; then
-                echo \"🗑️ 古いバックアップを削除します:\"
-                echo \"\$old_backups\"
-                echo \"\$old_backups\" | xargs sudo rm -rf
-                echo \"✅ 古いバックアップを削除しました\"
-              fi
-            else
-              echo \"ℹ️ 削除する古いバックアップはありません\"
-            fi
-          " || echo "⚠️ バックアップのクリーンアップをスキップしました"
-
-      - name: 📢 デプロイ完了通知
-        if: always()
-        run: |
-          if [ "${{ job.status }}" = "success" ]; then
-            echo "🎉 研修旅行サイトのデプロイが正常に完了しました！"
-            echo ""
-            echo "📋 デプロイ情報:"
-            echo "  🏷️ プロジェクト: research-trip-demo2025"
-            echo "  🔗 サイトURL: http://${{ secrets.DEPLOY_HOST 
-  }}/interact/"
-            echo "  📂 デプロイ先: ${{ secrets.DEPLOY_PATH }}"
-            echo "  🌿 ブランチ: ${{ github.ref_name }}"
-            echo "  📝 コミットID: ${{ github.sha }}"
-            echo "  👤 実行者: ${{ github.actor }}"
-            echo "  📅 実行時刻: $(date '+%Y-%m-%d %H:%M:%S JST')"
-            echo ""
-            echo "✨ 国際ロータリー第２５９０地区インターアクト研修旅行サ
-  イトが更新されました。"
-            echo "🏫 参加者、保護者、教員の皆様にご利用いただけます。"
-            
-            # GitHub Actions UI用の成功通知
-            echo "::notice 
-  title=デプロイ成功::研修旅行サイトが正常にデプロイされました。URL: 
-  http://${{ secrets.DEPLOY_HOST }}/interact/"
-            
-          else
-            echo "❌ デプロイプロセスでエラーが発生しました"
-            echo ""
-            echo "🔍 トラブルシューティング手順:"
-            echo "  1. SSH接続設定を確認してください"
-            echo "  2. GitHub 
-  Secretsが正しく設定されているか確認してください:"
-            echo "     • DEPLOY_HOST: サーバーIPアドレス"
-            echo "     • DEPLOY_USER: SSHユーザー名" 
-            echo "     • DEPLOY_KEY: SSH秘密鍵の内容"
-            echo "     • DEPLOY_PATH: デプロイ先パス"
-            echo "  3. サーバーの容量と権限を確認してください"
-            echo "  4. 
-  ワークフローログを確認して具体的なエラーを特定してください"
-            echo ""
-            echo "🆘 
-  問題が解決しない場合は、リポジトリのIssuesで報告してください。"
-            
-            # GitHub Actions UI用のエラー通知
-            echo "::error title=デプロイ失敗::デプロイプロセスでエラーが発
-  生しました。ログを確認してください。"
-          fi
-
-  2. README.md（研修旅行サイト専用版） - 
-  内容は上記README_RESEARCH_TRIP.mdと同じ
-
-  3. .gitignore - 内容は上記の通り
-
-  4. 必要なGitHub Secrets
-
-  | Secret名     | 値                                   |
-  |-------------|-------------------------------------|
-  | DEPLOY_HOST | 163.44.110.176                      |
-  | DEPLOY_USER | totenagashi                         |
-  | DEPLOY_KEY  | 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
-442FSoQSAfFD4yBBNrazLfrlC/Gp5ftiIWi
-YEljlceehKzLYXFAVgvo+JGq87HFLMQJNJ6
-3Z1VQX+8SJwLOiBbWxILPAyxtDj6vB/KR3npPKJGh64FLIo96uWp5zsgcQy/NHkz+CshcN
-vvB27H8O7KFCrIzg5dDlAP2BWF/VDm3iwCEvTz/+pBOb1thm0xIqscBqYXr9n/rY65J3+V
-ZWpis8XjMxuQQEiaO/XxJAselah0IsORcICFxZttinYgynsuhCQJ+m5PsDaEn0QAd6OJUT
-9UcMSxhfWtFRAAAADWdpdGh1Yi1kZXBsb3kBAgMEBQ==                       |
-  | DEPLOY_PATH | /var/www/2590interact.net/interact/ |
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Deploy to ConoHa VPS
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        script: |
+          # バックアップ作成
+          sudo cp -r ${{ secrets.DEPLOY_PATH }} ${{ secrets.DEPLOY_PATH }}.backup.$(date +%Y%m%d_%H%M%S) || true
+          
+          # 一時ディレクトリ作成
+          mkdir -p /tmp/deploy-$(date +%Y%m%d_%H%M%S)
+          cd /tmp/deploy-$(date +%Y%m%d_%H%M%S)
+          
+          # リポジトリクローン
+          git clone https://github.com/Rowboow/research-trip-demo2025.git .
+          
+          # ファイルをデプロイ先にコピー
+          sudo cp -r * ${{ secrets.DEPLOY_PATH }}
+          
+          # 権限設定
+          sudo chown -R www-data:www-data ${{ secrets.DEPLOY_PATH }}
+          sudo chmod -R 755 ${{ secrets.DEPLOY_PATH }}
+          
+          # 一時ディレクトリ削除
+          cd ~
+          rm -rf /tmp/deploy-$(date +%Y%m%d_%H%M%S)
+          
+          echo "Deployment completed successfully!"
